@@ -10,7 +10,8 @@ app.listen(PORT, () => {
 app.get('/appinfo', (req, res) => {
     res.json({
         version: '1.0.0',
-        url: 'https://quizapplicationbackend.glitch.me/app',
+        urlGoogleDrive: 'https://drive.google.com/file/d/1MJBc5ooLyfcvuqbsYDSzv-__3c-eu-e4/view?usp=sharing',
+        url: 'http://surl.li/angbu',
     });
 });
 
@@ -23,6 +24,6 @@ app.get('/questions', (req, res) => {
 app.get('/questions/:category', (req, res) => {
     const c = req.params.category
     res.json({
-        data: allQuestions.filter(q => q.type == c)
+        data: allQuestions.filter(q => q.subject == c)
     })
 })
