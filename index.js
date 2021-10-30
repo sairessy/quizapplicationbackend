@@ -1,5 +1,5 @@
 const allQuestions = require('./src/allQuestions');
-const Datastore = require('nedb')
+const Datastore = require('nedb');
 const express = require('express');
 const app = express();
 app.use(express.static('public'));
@@ -14,26 +14,26 @@ const collections = {
 
 collections.feedbacks.loadDatabase();
 
-app.get('/appinfo', (req, res) => {
+app.get('/appinfo', async (req, res) => {
+
     res.json({
         version: '1.0.0',
-        urlGoogleDrive: 'https://drive.google.com/file/d/1MJBc5ooLyfcvuqbsYDSzv-__3c-eu-e4/view?usp=sharing',
-        url: 'http://surl.li/angbu',
+        url: 'https://drive.google.com/file/d/1MJBc5ooLyfcvuqbsYDSzv-__3c-eu-e4/view?usp=sharing'
     });
 });
 
 app.get('/questions', (req, res) => {
     res.json({
         data: allQuestions
-    })
-})
+    });
+});
 
 app.get('/questions/:category', (req, res) => {
-    const c = req.params.category
+    const c = req.params.category;
     res.json({
         data: allQuestions.filter(q => q.subject == c)
-    })
-})
+    });
+});
 
 app.post('/feedback', (req, res) => {
     const data = req.body;
@@ -43,4 +43,4 @@ app.post('/feedback', (req, res) => {
     } catch (err) {
         res.json({ status: false });
     }
-})
+});
